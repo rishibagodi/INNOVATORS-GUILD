@@ -9,7 +9,7 @@ import { useUser } from '@/lib/user-context';
 export default function Signup() {
   const router = useRouter();
   const { clearCart } = useCart();
-  const { login, updateUser } = useUser();
+  const { signup } = useUser();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -53,22 +53,8 @@ export default function Signup() {
       // Clear cart for new user account
       clearCart();
       
-      // Create new user profile
-      const newUserProfile = {
-        name: formData.name,
-        email: formData.email,
-        phone: '',
-        address: '',
-        city: '',
-        zipCode: '',
-        country: 'United States',
-        bio: '',
-        profileImage: '/placeholder.png'
-      };
-      
-      // Update user profile and log in
-      updateUser(newUserProfile);
-      login(formData.email, formData.password);
+      // Create new user profile and log in using the signup function
+      signup(formData.name, formData.email, formData.password);
       
       setMessage('Account created successfully! Redirecting...');
       

@@ -19,6 +19,7 @@ interface UserContextType {
   updateUser: (profile: UserProfile) => void;
   isLoggedIn: boolean;
   login: (email: string, password: string) => void;
+  signup: (name: string, email: string, password: string) => void;
   logout: () => void;
 }
 
@@ -60,25 +61,48 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setIsLoggedIn(true);
     localStorage.setItem('ecofinds-logged-in', 'true');
     
-    // Create default user profile if no user exists
+    // Only create default user profile if no user exists and we don't have stored data
     if (!user) {
-      const defaultUser: UserProfile = {
-        name: 'John Doe',
-        email: email,
-        phone: '+1 (555) 123-4567',
-        address: '123 Eco Street',
-        city: 'Green City',
-        zipCode: '12345',
-        country: 'United States',
-        bio: 'Passionate about sustainable living and eco-friendly products. Love discovering new ways to reduce my carbon footprint.',
-        profileImage: '/placeholder.png'
-      };
-      setUser(defaultUser);
+      const storedUser = localStorage.getItem('ecofinds-user');
+      if (!storedUser) {
+        // Create minimal default user profile for new login without signup
+        const defaultUser: UserProfile = {
+          name: '',
+          email: email,
+          phone: '',
+          address: '',
+          city: '',
+          zipCode: '',
+          country: '',
+          bio: '',
+          profileImage: '/placeholder.png'
+        };
+        setUser(defaultUser);
+      }
     } else {
       // Update user email if provided during login
       const updatedUser = { ...user, email };
       setUser(updatedUser);
     }
+  };
+
+  const signup = (name: string, email: string, password: string) => {
+    // Create new user profile with the provided information
+    const newUser: UserProfile = {
+      name: name,
+      email: email,
+      phone: '',
+      address: '',
+      city: '',
+      zipCode: '',
+      country: '',
+      bio: '',
+      profileImage: '/placeholder.png'
+    };
+    
+    setUser(newUser);
+    setIsLoggedIn(true);
+    localStorage.setItem('ecofinds-logged-in', 'true');
   };
 
   const logout = () => {
@@ -96,6 +120,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       updateUser,
       isLoggedIn,
       login,
+      signup,
       logout
     }}>
       {children}

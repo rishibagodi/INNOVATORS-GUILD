@@ -189,7 +189,7 @@ export default function Dashboard() {
               {!isEditing ? (
                 <button
                   onClick={handleEdit}
-                  className="bg-primary text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
+                  className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
                 >
                   Edit Profile
                 </button>
@@ -203,7 +203,7 @@ export default function Dashboard() {
                   </button>
                   <button
                     onClick={handleSave}
-                    className="bg-primary text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors"
+                    className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
                   >
                     Save Changes
                   </button>
@@ -230,7 +230,7 @@ export default function Dashboard() {
                   {isEditing && (
                     <button
                       onClick={triggerFileInput}
-                      className="absolute bottom-2 right-2 bg-primary text-white p-2 rounded-full hover:bg-green-700 transition-colors"
+                      className="absolute bottom-2 right-2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition-colors"
                       title="Change profile picture"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,7 +273,7 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.name || ''}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.name || 'Not specified'}</p>
@@ -288,7 +288,7 @@ export default function Dashboard() {
                       type="email"
                       value={currentProfile?.email || ''}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.email || 'Not specified'}</p>
@@ -303,7 +303,8 @@ export default function Dashboard() {
                       type="tel"
                       value={currentProfile?.phone || ''}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
+                      placeholder="Enter phone number"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.phone || 'Not specified'}</p>
@@ -318,7 +319,8 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.address || ''}
                       onChange={(e) => handleInputChange('address', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
+                      placeholder="Enter street address"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.address || 'Not specified'}</p>
@@ -333,7 +335,8 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.city || ''}
                       onChange={(e) => handleInputChange('city', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
+                      placeholder="Enter city"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.city || 'Not specified'}</p>
@@ -348,7 +351,8 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.zipCode || ''}
                       onChange={(e) => handleInputChange('zipCode', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
+                      placeholder="Enter zip code"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.zipCode || 'Not specified'}</p>
@@ -362,8 +366,9 @@ export default function Dashboard() {
                     <select
                       value={currentProfile?.country || ''}
                       onChange={(e) => handleInputChange('country', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
                     >
+                      <option value="">Select a country</option>
                       <option value="United States">United States</option>
                       <option value="Canada">Canada</option>
                       <option value="United Kingdom">United Kingdom</option>
@@ -386,7 +391,7 @@ export default function Dashboard() {
                     value={currentProfile?.bio || ''}
                     onChange={(e) => handleInputChange('bio', e.target.value)}
                     rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900 placeholder-gray-500"
                     placeholder="Tell us about yourself and your eco-friendly journey..."
                   />
                 ) : (
@@ -400,15 +405,15 @@ export default function Dashboard() {
         {/* Additional Stats/Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary">12</div>
+            <div className="text-3xl font-bold text-primary-600">12</div>
             <div className="text-gray-600">Products Purchased</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary">45kg</div>
+            <div className="text-3xl font-bold text-primary-600">45kg</div>
             <div className="text-gray-600">CO₂ Saved</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary">3</div>
+            <div className="text-3xl font-bold text-primary-600">3</div>
             <div className="text-gray-600">Months Active</div>
           </div>
         </div>
