@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { formatPrice } from '@/lib/currency';
 
 export default function ProductCard({ id, title, price, imageUrl }) {
   return (
@@ -18,7 +19,7 @@ export default function ProductCard({ id, title, price, imageUrl }) {
             {title}
           </h3>
           <p className="text-xl font-bold text-primary-600 mb-3">
-            ${parseFloat(price).toFixed(2)}
+            {formatPrice(price)}
           </p>
           <button className="w-full bg-primary-600 text-white py-2 px-4 rounded-md hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-medium transition-colors">
             View Details

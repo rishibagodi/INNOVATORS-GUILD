@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar.js';
 import { useCart } from '@/lib/cart-context';
 import { DUMMY_PRODUCTS } from '@/lib/dummy-data';
+import { formatPrice } from '@/lib/currency';
 
 interface ProductDetailProps {
   params: Promise<{ id: string }>;
@@ -54,7 +55,7 @@ export default function ProductDetail({ params }: ProductDetailProps) {
                     {product.title}
                   </h1>
                   <p className="text-4xl font-bold text-primary-600 mb-6">
-                    ${product.price.toFixed(2)}
+                    {formatPrice(product.price)}
                   </p>
                 </div>
 

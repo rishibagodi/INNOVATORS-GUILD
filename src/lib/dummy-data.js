@@ -3,7 +3,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '1',
     title: 'Eco-Friendly Bamboo Phone Case',
-    price: 24.99,
+    price: 2074,
     category: 'Electronics',
     imageUrl: '/placeholder.png',
     description: 'Sustainable bamboo phone case that protects your device while being kind to the environment. Lightweight and durable.'
@@ -11,7 +11,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '2',
     title: 'Recycled Plastic Office Chair',
-    price: 299.99,
+    price: 24899,
     category: 'Furniture',
     imageUrl: '/placeholder.png',
     description: 'Comfortable office chair made from 100% recycled ocean plastic. Ergonomic design for long work sessions.'
@@ -19,7 +19,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '3',
     title: 'Sustainable Living Guide',
-    price: 19.99,
+    price: 1659,
     category: 'Books',
     imageUrl: '/placeholder.png',
     description: 'Complete guide to sustainable living with practical tips for reducing your environmental footprint.'
@@ -27,7 +27,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '4',
     title: 'Organic Cotton T-Shirt',
-    price: 34.99,
+    price: 2904,
     category: 'Clothing',
     imageUrl: '/placeholder.png',
     description: 'Soft organic cotton t-shirt made with fair trade practices. Available in multiple colors.'
@@ -35,7 +35,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '5',
     title: 'Solar Power Bank',
-    price: 49.99,
+    price: 4149,
     category: 'Electronics',
     imageUrl: '/placeholder.png',
     description: 'Portable solar power bank with 20000mAh capacity. Never run out of power while being eco-friendly.'
@@ -43,7 +43,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '6',
     title: 'Cork Yoga Mat',
-    price: 89.99,
+    price: 7469,
     category: 'Sports',
     imageUrl: '/placeholder.png',
     description: 'Natural cork yoga mat with excellent grip and antimicrobial properties. Perfect for all yoga styles.'
@@ -51,7 +51,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '7',
     title: 'Reclaimed Wood Desk',
-    price: 449.99,
+    price: 37349,
     category: 'Furniture',
     imageUrl: '/placeholder.png',
     description: 'Beautiful desk made from reclaimed barn wood. Each piece is unique with its own character.'
@@ -59,7 +59,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '8',
     title: 'Zero Waste Cookbook',
-    price: 27.99,
+    price: 2323,
     category: 'Books',
     imageUrl: '/placeholder.png',
     description: 'Learn to cook delicious meals while minimizing food waste. 200+ recipes included.'
@@ -67,7 +67,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '9',
     title: 'Hemp Hoodie',
-    price: 79.99,
+    price: 6639,
     category: 'Clothing',
     imageUrl: '/placeholder.png',
     description: 'Cozy hoodie made from sustainable hemp fibers. Naturally breathable and durable.'
@@ -75,7 +75,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '10',
     title: 'Biodegradable Tennis Balls',
-    price: 12.99,
+    price: 1078,
     category: 'Sports',
     imageUrl: '/placeholder.png',
     description: 'Tennis balls made from natural rubber that biodegrades after use. Pack of 3.'
@@ -90,7 +90,7 @@ export const DUMMY_CART_ITEMS = [
     id: '1',
     productId: '1',
     title: 'Eco-Friendly Bamboo Phone Case',
-    price: 24.99,
+    price: 2074,
     quantity: 2,
     imageUrl: '/placeholder.png'
   },
@@ -98,7 +98,7 @@ export const DUMMY_CART_ITEMS = [
     id: '2',
     productId: '3',
     title: 'Sustainable Living Guide',
-    price: 19.99,
+    price: 1659,
     quantity: 1,
     imageUrl: '/placeholder.png'
   },
@@ -106,7 +106,7 @@ export const DUMMY_CART_ITEMS = [
     id: '3',
     productId: '5',
     title: 'Solar Power Bank',
-    price: 49.99,
+    price: 4149,
     quantity: 1,
     imageUrl: '/placeholder.png'
   }

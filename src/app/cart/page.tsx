@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar.js';
 import { useCart } from '@/lib/cart-context';
 import { useUser } from '@/lib/user-context';
+import { formatPrice } from '@/lib/currency';
 
 export default function Cart() {
   const { 
@@ -37,7 +38,7 @@ export default function Cart() {
   const handleCheckout = () => {
     console.log('Checkout with items:', cartItems);
     console.log('Total amount:', total);
-    alert(`Checkout successful! Total: $${total.toFixed(2)}`);
+    alert(`Checkout successful! Total: ${formatPrice(total * 1.08)}`);
     // TODO: Implement actual checkout logic
   };
 
@@ -152,7 +153,7 @@ export default function Cart() {
                       {item.title}
                     </h3>
                     <p className="text-primary-600 font-semibold">
-                      ${item.price.toFixed(2)} each
+                      {formatPrice(item.price)} each
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
                       Quantity: {item.quantity} {item.quantity === 1 ? 'item' : 'items'}
@@ -183,10 +184,10 @@ export default function Cart() {
                   
                   <div className="ml-6 text-right">
                     <p className="text-sm text-gray-500 mb-1">
-                      {item.quantity} × ${item.price.toFixed(2)}
+                      {item.quantity} × {formatPrice(item.price)}
                     </p>
                     <p className="text-lg font-bold text-gray-900">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatPrice(item.price * item.quantity)}
                     </p>
                     <button
                       onClick={() => removeFromCart(item.id)}
@@ -208,22 +209,22 @@ export default function Cart() {
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">${total.toFixed(2)}</span>
+                  <span className="font-medium">{formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-medium text-green-600">Free</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Tax</span>
-                  <span className="font-medium">${(total * 0.08).toFixed(2)}</span>
+                  <span className="text-gray-600">Tax (8%)</span>
+                  <span className="font-medium">{formatPrice(total * 0.08)}</span>
                 </div>
               </div>
               
               <div className="border-t pt-4">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span>${(total * 1.08).toFixed(2)}</span>
+                  <span>{formatPrice(total * 1.08)}</span>
                 </div>
               </div>
               
