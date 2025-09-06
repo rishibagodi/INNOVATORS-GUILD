@@ -7,16 +7,21 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar.js';
 import { useUser } from '@/lib/user-context';
 import { useCart } from '@/lib/cart-context';
+import { useProducts } from '@/lib/products-context';
 
 export default function Dashboard() {
   const { user, updateUser, isLoggedIn, logout, addPurchase } = useUser();
   const { cartItems } = useCart();
+  const { getUserProducts } = useProducts();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   
   const [editedProfile, setEditedProfile] = useState(user);
+
+  // Get user's created products
+  const userCreatedProducts = user ? getUserProducts(user.email) : [];
 
   // Comprehensive country list
   const countries = [
@@ -473,6 +478,63 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* My Products Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-bold text-gray-900">My Products</h3>
+            <Link 
+              href="/products/add"
+              className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors text-sm"
+            >
+              Add New Product
+            </Link>
+          </div>
+          
+          {userCreatedProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {userCreatedProducts.map((product) => (
+                <div key={product.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.title}
+                    width={200}
+                    height={150}
+                    className="w-full h-32 object-cover rounded-md mb-3"
+                  />
+                  <h4 className="font-semibold text-gray-900 text-sm mb-1">{product.title}</h4>
+                  <p className="text-gray-600 text-xs mb-2 line-clamp-2">{product.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-primary-600 font-bold text-sm">${product.price}</span>
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">{product.category}</span>
+                  </div>
+                  <div className="mt-2 text-xs text-gray-500">
+                    Created: {product.createdAt ? new Date(product.createdAt).toLocaleDateString() : 'Unknown'}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <div className="text-gray-400 mb-4">
+                <svg className="mx-auto h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+              <h4 className="text-gray-600 font-medium mb-2">No products created yet</h4>
+              <p className="text-gray-500 text-sm mb-4">Start sharing your eco-friendly products with the community!</p>
+              <Link 
+                href="/products/add"
+                className="inline-flex items-center bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors text-sm"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Create Your First Product
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Additional Stats/Info Cards */}

@@ -14,6 +14,7 @@ interface UserProfile {
   profileImage: string;
   joinDate: string; // Track when user joined
   purchaseHistory: string[]; // Track purchased product IDs
+  createdProducts: string[]; // Track product IDs created by user
 }
 
 interface UserContextType {
@@ -23,6 +24,7 @@ interface UserContextType {
   login: (email: string, password: string) => void;
   signup: (name: string, email: string, password: string) => void;
   addPurchase: (productId: string) => void;
+  addCreatedProduct: (productId: string) => void;
   logout: () => void;
 }
 
@@ -44,7 +46,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
       const migratedUser: UserProfile = {
         ...parsedUser,
         joinDate: parsedUser.joinDate || new Date().toISOString(),
-        purchaseHistory: parsedUser.purchaseHistory || []
+        purchaseHistory: parsedUser.purchaseHistory || [],
+        createdProducts: parsedUser.createdProducts || []
       };
       
       setUser(migratedUser);
@@ -89,7 +92,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
           bio: '',
           profileImage: '/placeholder.png',
           joinDate: new Date().toISOString(),
-          purchaseHistory: []
+          purchaseHistory: [],
+          createdProducts: []
         };
         setUser(defaultUser);
       }
@@ -113,7 +117,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
       bio: '',
       profileImage: '/placeholder.png',
       joinDate: new Date().toISOString(),
-      purchaseHistory: []
+      purchaseHistory: [],
+      createdProducts: []
     };
     
     setUser(newUser);
@@ -126,6 +131,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
       const updatedUser = {
         ...user,
         purchaseHistory: [...(user.purchaseHistory || []), productId]
+      };
+      setUser(updatedUser);
+    }
+  };
+
+  const addCreatedProduct = (productId: string) => {
+    if (user) {
+      const updatedUser = {
+        ...user,
+        createdProducts: [...(user.createdProducts || []), productId]
       };
       setUser(updatedUser);
     }
@@ -148,6 +163,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       login,
       signup,
       addPurchase,
+      addCreatedProduct,
       logout
     }}>
       {children}

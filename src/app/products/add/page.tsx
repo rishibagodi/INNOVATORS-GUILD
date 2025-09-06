@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar.js';
 import ProductForm from '@/components/ProductForm.js';
 import { useUser } from '@/lib/user-context';
+import { useProducts } from '@/lib/products-context';
 
 interface ProductData {
   id: string;
@@ -18,7 +19,8 @@ interface ProductData {
 
 export default function AddProduct() {
   const router = useRouter();
-  const { isLoggedIn } = useUser();
+  const { user, isLoggedIn } = useUser();
+  const { addProduct } = useProducts();
   const [isLoading, setIsLoading] = useState(true);
 
   // Check authentication status on component mount
@@ -32,9 +34,24 @@ export default function AddProduct() {
   }, []);
 
   const handleSubmit = (productData: ProductData) => {
-    console.log('New product data:', productData);
-    alert('Product added successfully! (Check console for data)');
-    // TODO: Implement actual product creation logic
+    if (!user) {
+      alert('Please log in to add a product');
+      return;
+    }
+
+    // Add the product with user information
+    const productWithUser = {
+      title: productData.title,
+      description: productData.description,
+      price: productData.price,
+      category: productData.category,
+      imageUrl: productData.imageUrl,
+      createdBy: user.email
+    };
+
+    addProduct(productWithUser);
+
+    alert(`Product "${productData.title}" added successfully!`);
     router.push('/products');
   };
 

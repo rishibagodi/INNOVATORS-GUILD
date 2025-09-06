@@ -4,19 +4,23 @@ import { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar.js';
 import ProductCard from '@/components/ProductCard.js';
 import SearchBar from '@/components/SearchBar.js';
-import { DUMMY_PRODUCTS } from '@/lib/dummy-data';
+import { useProducts } from '@/lib/products-context';
 
 export default function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const { getAllProducts } = useProducts();
+  
+  // Get all products (dummy + user-created)
+  const allProducts = getAllProducts();
 
   const filteredProducts = useMemo(() => {
-    return DUMMY_PRODUCTS.filter(product => {
+    return allProducts.filter(product => {
       const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [allProducts, searchTerm, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-gray-50">
