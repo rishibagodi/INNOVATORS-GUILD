@@ -1,6 +1,12 @@
+'use client';
+
 import Link from 'next/link';
+import { useCart } from '@/lib/cart-context';
 
 export default function Navbar() {
+  const { getTotalItems } = useCart();
+  const itemCount = getTotalItems();
+
   return (
     <nav className="bg-white shadow-md border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,9 +26,14 @@ export default function Navbar() {
             </Link>
             <Link 
               href="/cart" 
-              className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors relative"
             >
               Cart
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
             </Link>
             <Link 
               href="/products/add" 

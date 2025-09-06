@@ -1,43 +1,21 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar.js';
-import { DUMMY_CART_ITEMS } from '@/lib/dummy-data';
-
-interface CartItem {
-  id: string;
-  productId: string;
-  title: string;
-  price: number;
-  quantity: number;
-  imageUrl: string;
-}
+import { useCart } from '@/lib/cart-context';
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState<CartItem[]>(DUMMY_CART_ITEMS);
+  const { 
+    cartItems, 
+    updateQuantity, 
+    removeFromCart, 
+    getTotalPrice, 
+    getTotalItems 
+  } = useCart();
 
-  const updateQuantity = (itemId: string, newQuantity: number) => {
-    if (newQuantity <= 0) {
-      removeItem(itemId);
-      return;
-    }
-    
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const removeItem = (itemId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
-    console.log('Removed item with ID:', itemId);
-  };
-
-  const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const total = getTotalPrice();
+  const itemCount = getTotalItems();
 
   const handleCheckout = () => {
     console.log('Checkout with items:', cartItems);
@@ -114,7 +92,7 @@ export default function Cart() {
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                       className="text-red-600 hover:text-red-800 text-sm font-medium mt-1"
                     >
                       Remove

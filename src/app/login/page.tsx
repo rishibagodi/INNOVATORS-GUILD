@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useCart } from '@/lib/cart-context';
 
 export default function Login() {
   const router = useRouter();
+  const { clearCart } = useCart();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +24,9 @@ export default function Login() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Clear cart for new login session
+      clearCart();
       
       setMessage('Login successful! Redirecting...');
       

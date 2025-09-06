@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useCart } from '@/lib/cart-context';
 
 export default function Signup() {
   const router = useRouter();
+  const { clearCart } = useCart();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,6 +47,9 @@ export default function Signup() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Clear cart for new user account
+      clearCart();
       
       setMessage('Account created successfully! Redirecting to login...');
       

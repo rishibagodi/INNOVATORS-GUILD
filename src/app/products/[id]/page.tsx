@@ -4,6 +4,7 @@ import { use } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar.js';
+import { useCart } from '@/lib/cart-context';
 import { DUMMY_PRODUCTS } from '@/lib/dummy-data';
 
 interface ProductDetailProps {
@@ -12,6 +13,7 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ params }: ProductDetailProps) {
   const { id } = use(params);
+  const { addToCart } = useCart();
   const product = DUMMY_PRODUCTS.find(p => p.id === id);
 
   if (!product) {
@@ -19,9 +21,9 @@ export default function ProductDetail({ params }: ProductDetailProps) {
   }
 
   const handleAddToCart = () => {
-    console.log('Adding to cart:', product);
+    addToCart(product);
     alert(`Added "${product.title}" to cart!`);
-    // TODO: Implement actual cart functionality
+    console.log('Added to cart:', product);
   };
 
   return (
