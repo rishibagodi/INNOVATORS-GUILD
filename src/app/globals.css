@@ -15,9 +15,15 @@
 /* Mobile-specific enhancements */
 @media (max-width: 640px) {
   /* Increase touch targets on mobile */
-  button, .btn-primary, .btn-secondary {
+  button, .btn-primary {
     min-height: 48px;
     padding: 12px 16px;
+  }
+  
+  /* Smaller secondary buttons for navbar symmetry */
+  .btn-secondary {
+    min-height: 40px;
+    padding: 8px 12px;
   }
   
   /* Prevent zoom on input focus for iOS */
@@ -86,13 +92,14 @@ body {
   }
   
   .btn-secondary {
-    @apply bg-white text-green-600 border-2 border-green-600 px-6 py-2 rounded-lg font-medium;
+    @apply bg-white text-green-600 border-2 border-green-600 px-6 py-1.5 rounded-lg font-medium;
     @apply transition-all duration-300 ease-out;
     @apply hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-500/25;
     @apply active:scale-95 active:shadow-sm;
     @apply focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
     @apply transform hover:-translate-y-0.5;
     /* Mobile optimizations */
+    min-height: 36px; /* Reduced height for better symmetry */
     min-height: 44px; /* iOS accessibility guideline for touch targets */
   }
   
