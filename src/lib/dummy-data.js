@@ -11,7 +11,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '2',
     title: 'Recycled Plastic Office Chair',
-    price: 24899,
+    price: 2489,
     category: 'Furniture',
     imageUrl: '/placeholder.png',
     description: 'Comfortable office chair made from 100% recycled ocean plastic. Ergonomic design for long work sessions.'
@@ -51,7 +51,7 @@ export const DUMMY_PRODUCTS = [
   {
     id: '7',
     title: 'Reclaimed Wood Desk',
-    price: 37349,
+    price: 3734,
     category: 'Furniture',
     imageUrl: '/placeholder.png',
     description: 'Beautiful desk made from reclaimed barn wood. Each piece is unique with its own character.'
