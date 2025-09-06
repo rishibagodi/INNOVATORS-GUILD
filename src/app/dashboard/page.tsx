@@ -6,15 +6,81 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar.js';
 import { useUser } from '@/lib/user-context';
+import { useCart } from '@/lib/cart-context';
 
 export default function Dashboard() {
-  const { user, updateUser, isLoggedIn, logout } = useUser();
+  const { user, updateUser, isLoggedIn, logout, addPurchase } = useUser();
+  const { cartItems } = useCart();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   
   const [editedProfile, setEditedProfile] = useState(user);
+
+  // Comprehensive country list
+  const countries = [
+    "", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
+    "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+    "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+    "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+    "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada",
+    "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros",
+    "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+    "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica",
+    "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea",
+    "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France",
+    "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+    "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras",
+    "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland",
+    "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
+    "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+    "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar",
+    "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands",
+    "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco",
+    "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia",
+    "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger",
+    "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan",
+    "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru",
+    "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
+    "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal",
+    "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia",
+    "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan",
+    "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+    "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
+    "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States",
+    "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+    "Yemen", "Zambia", "Zimbabwe"
+  ];
+
+  // Calculate user statistics
+  const calculateStats = () => {
+    if (!user) return { productsOrdered: 0, co2Saved: 0, monthsActive: 0 };
+
+    // Products ordered (from purchase history)
+    const productsOrdered = user.purchaseHistory ? user.purchaseHistory.length : 0;
+
+    // CO2 saved (estimate: 2.5kg per eco-friendly product)
+    const co2Saved = productsOrdered * 2.5;
+
+    // Months active (since join date)
+    let monthsActive = 0;
+    if (user.joinDate) {
+      const joinDate = new Date(user.joinDate);
+      const now = new Date();
+      const diffTime = Math.abs(now.getTime() - joinDate.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      monthsActive = Math.max(1, Math.ceil(diffDays / 30)); // At least 1 month
+    } else {
+      monthsActive = 1; // Default for new users
+    }
+
+    return { productsOrdered, co2Saved, monthsActive };
+  };
+
+  const stats = calculateStats();
 
   // Check authentication status on component mount
   useEffect(() => {
@@ -81,6 +147,16 @@ export default function Dashboard() {
 
   const handleLoginRedirect = () => {
     router.push('/login');
+  };
+
+  // Demo function to add sample purchases for testing
+  const addDemoData = () => {
+    if (user) {
+      addPurchase('eco-bottle-1');
+      addPurchase('solar-charger-2');
+      addPurchase('bamboo-toothbrush-3');
+      alert('Added demo purchase data!');
+    }
   };
 
   // Loading state
@@ -368,14 +444,11 @@ export default function Dashboard() {
                       onChange={(e) => handleInputChange('country', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-600 text-gray-900"
                     >
-                      <option value="">Select a country</option>
-                      <option value="United States">United States</option>
-                      <option value="Canada">Canada</option>
-                      <option value="United Kingdom">United Kingdom</option>
-                      <option value="Germany">Germany</option>
-                      <option value="France">France</option>
-                      <option value="Australia">Australia</option>
-                      <option value="Other">Other</option>
+                      {countries.map((country) => (
+                        <option key={country} value={country}>
+                          {country || "Select a country"}
+                        </option>
+                      ))}
                     </select>
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.country || 'Not specified'}</p>
@@ -405,18 +478,37 @@ export default function Dashboard() {
         {/* Additional Stats/Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">12</div>
-            <div className="text-gray-600">Products Purchased</div>
+            <div className="text-3xl font-bold text-primary-600">{stats.productsOrdered}</div>
+            <div className="text-gray-600">Products Ordered</div>
+            <div className="text-xs text-gray-500 mt-1">Eco-friendly purchases</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">45kg</div>
+            <div className="text-3xl font-bold text-primary-600">{stats.co2Saved.toFixed(1)}kg</div>
             <div className="text-gray-600">CO₂ Saved</div>
+            <div className="text-xs text-gray-500 mt-1">Environmental impact</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">3</div>
+            <div className="text-3xl font-bold text-primary-600">{stats.monthsActive}</div>
             <div className="text-gray-600">Months Active</div>
+            <div className="text-xs text-gray-500 mt-1">Since joining EcoFinds</div>
           </div>
         </div>
+
+        {/* Demo Data Button (for testing) */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mt-6">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <h4 className="text-sm font-medium text-yellow-800 mb-2">Development Mode</h4>
+              <button
+                onClick={addDemoData}
+                className="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700 transition-colors text-sm"
+              >
+                Add Demo Purchase Data
+              </button>
+              <p className="text-xs text-yellow-700 mt-2">This button is only visible in development mode</p>
+            </div>
+          </div>
+        )}
         </div>
       </div>
     </div>

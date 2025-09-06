@@ -12,6 +12,8 @@ interface UserProfile {
   country: string;
   bio: string;
   profileImage: string;
+  joinDate: string; // Track when user joined
+  purchaseHistory: string[]; // Track purchased product IDs
 }
 
 interface UserContextType {
@@ -20,6 +22,7 @@ interface UserContextType {
   isLoggedIn: boolean;
   login: (email: string, password: string) => void;
   signup: (name: string, email: string, password: string) => void;
+  addPurchase: (productId: string) => void;
   logout: () => void;
 }
 
@@ -35,7 +38,16 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const storedLoginStatus = localStorage.getItem('ecofinds-logged-in');
     
     if (storedUser && storedLoginStatus === 'true') {
-      setUser(JSON.parse(storedUser));
+      const parsedUser = JSON.parse(storedUser);
+      
+      // Migrate existing user data to new format if needed
+      const migratedUser: UserProfile = {
+        ...parsedUser,
+        joinDate: parsedUser.joinDate || new Date().toISOString(),
+        purchaseHistory: parsedUser.purchaseHistory || []
+      };
+      
+      setUser(migratedUser);
       setIsLoggedIn(true);
     } else {
       // Don't set default user data if not logged in
@@ -75,7 +87,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
           zipCode: '',
           country: '',
           bio: '',
-          profileImage: '/placeholder.png'
+          profileImage: '/placeholder.png',
+          joinDate: new Date().toISOString(),
+          purchaseHistory: []
         };
         setUser(defaultUser);
       }
@@ -97,12 +111,24 @@ export function UserProvider({ children }: { children: ReactNode }) {
       zipCode: '',
       country: '',
       bio: '',
-      profileImage: '/placeholder.png'
+      profileImage: '/placeholder.png',
+      joinDate: new Date().toISOString(),
+      purchaseHistory: []
     };
     
     setUser(newUser);
     setIsLoggedIn(true);
     localStorage.setItem('ecofinds-logged-in', 'true');
+  };
+
+  const addPurchase = (productId: string) => {
+    if (user) {
+      const updatedUser = {
+        ...user,
+        purchaseHistory: [...(user.purchaseHistory || []), productId]
+      };
+      setUser(updatedUser);
+    }
   };
 
   const logout = () => {
@@ -121,6 +147,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
       isLoggedIn,
       login,
       signup,
+      addPurchase,
       logout
     }}>
       {children}
