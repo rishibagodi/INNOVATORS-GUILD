@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Signup() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,9 +50,8 @@ export default function Signup() {
       
       // TODO: Implement actual signup logic here
       setTimeout(() => {
-        setMessage('');
-        // You could redirect here: router.push('/login');
-      }, 2000);
+        router.push('/login'); // Redirect to login page
+      }, 1500); // Give user time to see success message
       
     } catch (error) {
       setMessage('Signup failed. Please try again.');
@@ -196,6 +197,17 @@ export default function Signup() {
               ) : (
                 'Create Account'
               )}
+            </button>
+          </div>
+          
+          {/* Demo Skip Option */}
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => router.push('/products')}
+              className="text-sm text-gray-600 hover:text-primary-600 underline"
+            >
+              Skip signup and browse products
             </button>
           </div>
         </form>

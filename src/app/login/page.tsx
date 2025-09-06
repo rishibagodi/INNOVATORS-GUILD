@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -24,11 +26,10 @@ export default function Login() {
       setMessage('Login successful! Redirecting...');
       
       // TODO: Implement actual login logic here
-      // For now, just show success message
+      // For now, just show success message and redirect
       setTimeout(() => {
-        setMessage('');
-        // You could redirect here: router.push('/products');
-      }, 2000);
+        router.push('/products'); // Redirect to products page
+      }, 1500); // Give user time to see success message
       
     } catch (error) {
       setMessage('Login failed. Please try again.');
@@ -144,6 +145,17 @@ export default function Login() {
               ) : (
                 'Sign in'
               )}
+            </button>
+          </div>
+          
+          {/* Demo Skip Option */}
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => router.push('/products')}
+              className="text-sm text-gray-600 hover:text-primary-600 underline"
+            >
+              Skip login and browse products
             </button>
           </div>
         </form>
