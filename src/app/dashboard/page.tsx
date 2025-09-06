@@ -1,15 +1,29 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useUser } from '@/lib/user-context';
 
 export default function Dashboard() {
   const { user, updateUser, isLoggedIn, logout } = useUser();
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
   
   const [editedProfile, setEditedProfile] = useState(user);
+
+  // Check authentication status on component mount
+  useEffect(() => {
+    // Give a moment for user context to load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -64,9 +78,84 @@ export default function Dashboard() {
     alert('Logged out successfully!');
   };
 
+  const handleLoginRedirect = () => {
+    router.push('/login');
+  };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <div className="text-gray-600">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Not logged in state - show login prompt
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 text-center">
+          <div>
+            <h1 className="text-3xl font-bold text-primary-600 mb-2">EcoFinds</h1>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Your Dashboard</h2>
+            <div className="bg-white rounded-lg shadow-md p-8">
+              <div className="mb-6">
+                <svg className="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Sign In Required</h3>
+                <p className="text-gray-600 mb-6">
+                  Please sign in to access your personalized dashboard with profile management, order history, and eco-impact tracking.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <button
+                  onClick={handleLoginRedirect}
+                  className="w-full bg-primary-600 text-white py-3 px-4 rounded-md hover:bg-primary-700 transition-colors font-medium"
+                >
+                  Sign In to Dashboard
+                </button>
+                
+                <div className="text-sm text-gray-600">
+                  Don&apos;t have an account?{' '}
+                  <Link href="/signup" className="text-primary-600 hover:text-primary-700 font-medium">
+                    Sign up here
+                  </Link>
+                </div>
+                
+                <div className="pt-4 border-t border-gray-200">
+                  <Link 
+                    href="/products" 
+                    className="text-primary-600 hover:text-primary-700 text-sm font-medium"
+                  >
+                    ← Continue browsing products
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // User not found but logged in (shouldn't happen, but safety check)
   if (!user) {
     return <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">Loading...</div>
+      <div className="text-center">
+        <p className="text-gray-600 mb-4">Unable to load user profile.</p>
+        <button
+          onClick={handleLoginRedirect}
+          className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
+        >
+          Return to Login
+        </button>
+      </div>
     </div>;
   }
 

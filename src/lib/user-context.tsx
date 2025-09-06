@@ -37,19 +37,10 @@ export function UserProvider({ children }: { children: ReactNode }) {
       setUser(JSON.parse(storedUser));
       setIsLoggedIn(true);
     } else {
-      // Set default user data if not logged in
-      const defaultUser: UserProfile = {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        phone: '+1 (555) 123-4567',
-        address: '123 Eco Street',
-        city: 'Green City',
-        zipCode: '12345',
-        country: 'United States',
-        bio: 'Passionate about sustainable living and eco-friendly products. Love discovering new ways to reduce my carbon footprint.',
-        profileImage: '/placeholder.png'
-      };
-      setUser(defaultUser);
+      // Don't set default user data if not logged in
+      // Keep user as null and isLoggedIn as false
+      setUser(null);
+      setIsLoggedIn(false);
     }
   }, []);
 
@@ -69,8 +60,22 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setIsLoggedIn(true);
     localStorage.setItem('ecofinds-logged-in', 'true');
     
-    // Update user email if provided during login
-    if (user) {
+    // Create default user profile if no user exists
+    if (!user) {
+      const defaultUser: UserProfile = {
+        name: 'John Doe',
+        email: email,
+        phone: '+1 (555) 123-4567',
+        address: '123 Eco Street',
+        city: 'Green City',
+        zipCode: '12345',
+        country: 'United States',
+        bio: 'Passionate about sustainable living and eco-friendly products. Love discovering new ways to reduce my carbon footprint.',
+        profileImage: '/placeholder.png'
+      };
+      setUser(defaultUser);
+    } else {
+      // Update user email if provided during login
       const updatedUser = { ...user, email };
       setUser(updatedUser);
     }
@@ -81,19 +86,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('ecofinds-logged-in');
     localStorage.removeItem('ecofinds-user');
     
-    // Reset to default user
-    const defaultUser: UserProfile = {
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      phone: '+1 (555) 123-4567',
-      address: '123 Eco Street',
-      city: 'Green City',
-      zipCode: '12345',
-      country: 'United States',
-      bio: 'Passionate about sustainable living and eco-friendly products. Love discovering new ways to reduce my carbon footprint.',
-      profileImage: '/placeholder.png'
-    };
-    setUser(defaultUser);
+    // Clear user data completely
+    setUser(null);
   };
 
   return (
