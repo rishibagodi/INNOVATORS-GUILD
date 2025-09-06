@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar.js';
 import { DUMMY_CART_ITEMS } from '@/lib/dummy-data';
 
 interface CartItem {

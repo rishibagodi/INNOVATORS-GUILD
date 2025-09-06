@@ -3,7 +3,7 @@
 import { use } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar.js';
 import { DUMMY_PRODUCTS } from '@/lib/dummy-data';
 
 interface ProductDetailProps {
