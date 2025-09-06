@@ -58,7 +58,7 @@ export default function Navbar() {
                 className="w-8 h-8 rounded-full border-2 border-gray-200 hover:border-primary-300 transition-colors object-cover"
               />
               <span className="hidden sm:inline">
-                {user ? 'Dashboard' : 'Sign In'}
+                {user ? 'Profile' : 'Sign In'}
               </span>
             </Link>
           </div>
