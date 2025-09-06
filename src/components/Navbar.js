@@ -20,7 +20,7 @@ export default function Navbar() {
             </Link>
           </div>
           
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-2">
             <Link 
               href="/products" 
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -40,7 +40,7 @@ export default function Navbar() {
             </Link>
             <Link 
               href="/products/add" 
-              className="bg-primary-600 text-white hover:bg-primary-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors border border-gray-300 hover:border-primary-600"
             >
               Add Product
             </Link>
