@@ -260,33 +260,40 @@ export default function Dashboard() {
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6 mb-6 animate-fade-in-up">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <h1 className="text-3xl font-bold text-gray-900">EcoFinds</h1>
-              <span className="text-sm text-gray-500">User Dashboard</span>
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xl">🌱</span>
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold text-green-600 hover:scale-105 transition-transform duration-300">EcoFinds</h1>
+                  <span className="text-sm text-green-700 font-medium">Sustainable Living Dashboard</span>
+                </div>
+              </div>
             </div>
             <div className="flex space-x-3">
               {!isEditing ? (
                 <button
                   onClick={handleEdit}
-                  className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
+                  className="btn-primary bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                 >
-                  Edit Profile
+                  ✏️ Edit Profile
                 </button>
               ) : (
                 <>
                   <button
                     onClick={handleCancel}
-                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors"
+                    className="btn-secondary bg-white text-gray-600 border-2 border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 ease-out hover:shadow-lg active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                   >
-                    Cancel
+                    ✖️ Cancel
                   </button>
                   <button
                     onClick={handleSave}
-                    className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
+                    className="btn-primary bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                   >
-                    Save Changes
+                    ✅ Save Changes
                   </button>
                 </>
               )}
@@ -333,9 +340,9 @@ export default function Dashboard() {
                 {isLoggedIn && (
                   <button
                     onClick={handleLogout}
-                    className="mt-2 text-sm text-red-600 hover:text-red-800 transition-colors"
+                    className="mt-2 text-sm text-red-600 hover:text-red-800 transition-all duration-200 hover:scale-105 active:scale-95 font-medium hover:underline"
                   >
-                    Logout
+                    🚪 Logout
                   </button>
                 )}
               </div>
@@ -343,7 +350,10 @@ export default function Dashboard() {
 
             {/* Profile Details Section */}
             <div className="lg:col-span-2">
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">Profile Information</h3>
+              <h3 className="text-xl font-semibold text-green-700 mb-6 flex items-center space-x-2">
+                <span>👤</span>
+                <span>Profile Information</span>
+              </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name */}
@@ -483,12 +493,15 @@ export default function Dashboard() {
         {/* My Products Section */}
         <div className="bg-white rounded-lg shadow-md p-6 mt-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900">My Products</h3>
+            <h3 className="text-xl font-bold text-green-700 flex items-center space-x-2 mb-4">
+              <span>🛍️</span>
+              <span>My Products</span>
+            </h3>
             <Link 
               href="/products/add"
-              className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors text-sm"
+              className="btn-primary bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out text-sm hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             >
-              Add New Product
+              ➕ Add New Product
             </Link>
           </div>
           
@@ -539,20 +552,29 @@ export default function Dashboard() {
 
         {/* Additional Stats/Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">{stats.productsOrdered}</div>
-            <div className="text-gray-600">Products Ordered</div>
-            <div className="text-xs text-gray-500 mt-1">Eco-friendly purchases</div>
+          <div className="card-hover bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
+            <div className="text-3xl font-bold text-green-600 group-hover:scale-110 transition-transform duration-300">{stats.productsOrdered}</div>
+            <div className="text-gray-600 font-medium">Products Ordered</div>
+            <div className="text-xs text-green-600 mt-1 flex items-center justify-center space-x-1">
+              <span>🛒</span>
+              <span>Eco-friendly purchases</span>
+            </div>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">{stats.co2Saved.toFixed(1)}kg</div>
-            <div className="text-gray-600">CO₂ Saved</div>
-            <div className="text-xs text-gray-500 mt-1">Environmental impact</div>
+          <div className="card-hover bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
+            <div className="text-3xl font-bold text-green-600 group-hover:scale-110 transition-transform duration-300">{stats.co2Saved.toFixed(1)}kg</div>
+            <div className="text-gray-600 font-medium">CO₂ Saved</div>
+            <div className="text-xs text-green-600 mt-1 flex items-center justify-center space-x-1">
+              <span>🌍</span>
+              <span>Environmental impact</span>
+            </div>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="text-3xl font-bold text-primary-600">{stats.monthsActive}</div>
-            <div className="text-gray-600">Months Active</div>
-            <div className="text-xs text-gray-500 mt-1">Since joining EcoFinds</div>
+          <div className="card-hover bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
+            <div className="text-3xl font-bold text-green-600 group-hover:scale-110 transition-transform duration-300">{stats.monthsActive}</div>
+            <div className="text-gray-600 font-medium">Months Active</div>
+            <div className="text-xs text-green-600 mt-1 flex items-center justify-center space-x-1">
+              <span>⏰</span>
+              <span>Since joining EcoFinds</span>
+            </div>
           </div>
         </div>
 
