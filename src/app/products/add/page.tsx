@@ -4,10 +4,19 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar.js';
 import ProductForm from '@/components/ProductForm.js';
 
+interface ProductData {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+}
+
 export default function AddProduct() {
   const router = useRouter();
 
-  const handleSubmit = (productData) => {
+  const handleSubmit = (productData: ProductData) => {
     console.log('New product data:', productData);
     alert('Product added successfully! (Check console for data)');
     // TODO: Implement actual product creation logic
