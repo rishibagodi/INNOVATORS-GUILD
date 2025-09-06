@@ -50,7 +50,7 @@ export default function ProductForm({ onSubmit }) {
           id="title"
           name="title"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
           placeholder="Enter product title"
           value={formData.title}
           onChange={handleChange}
@@ -66,7 +66,7 @@ export default function ProductForm({ onSubmit }) {
           name="description"
           rows={4}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
           placeholder="Enter product description"
           value={formData.description}
           onChange={handleChange}
@@ -84,7 +84,7 @@ export default function ProductForm({ onSubmit }) {
           step="0.01"
           min="0"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
           placeholder="0.00"
           value={formData.price}
           onChange={handleChange}
@@ -99,7 +99,7 @@ export default function ProductForm({ onSubmit }) {
           id="category"
           name="category"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900"
           value={formData.category}
           onChange={handleChange}
         >
@@ -120,7 +120,7 @@ export default function ProductForm({ onSubmit }) {
           type="url"
           id="imageUrl"
           name="imageUrl"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
           placeholder="https://example.com/image.jpg"
           value={formData.imageUrl}
           onChange={handleChange}

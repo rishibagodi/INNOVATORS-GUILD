@@ -38,7 +38,7 @@ export default function SearchBar({ onSearch, onFilter }) {
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
             value={searchTerm}
             onChange={handleSearchChange}
           />

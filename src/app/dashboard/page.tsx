@@ -273,7 +273,7 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.name || ''}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.name || 'Not specified'}</p>
@@ -288,7 +288,7 @@ export default function Dashboard() {
                       type="email"
                       value={currentProfile?.email || ''}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.email || 'Not specified'}</p>
@@ -303,7 +303,7 @@ export default function Dashboard() {
                       type="tel"
                       value={currentProfile?.phone || ''}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.phone || 'Not specified'}</p>
@@ -318,7 +318,7 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.address || ''}
                       onChange={(e) => handleInputChange('address', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.address || 'Not specified'}</p>
@@ -333,7 +333,7 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.city || ''}
                       onChange={(e) => handleInputChange('city', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.city || 'Not specified'}</p>
@@ -348,7 +348,7 @@ export default function Dashboard() {
                       type="text"
                       value={currentProfile?.zipCode || ''}
                       onChange={(e) => handleInputChange('zipCode', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     />
                   ) : (
                     <p className="text-gray-900 py-2">{currentProfile?.zipCode || 'Not specified'}</p>
@@ -362,7 +362,7 @@ export default function Dashboard() {
                     <select
                       value={currentProfile?.country || ''}
                       onChange={(e) => handleInputChange('country', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     >
                       <option value="United States">United States</option>
                       <option value="Canada">Canada</option>
@@ -386,7 +386,7 @@ export default function Dashboard() {
                     value={currentProfile?.bio || ''}
                     onChange={(e) => handleInputChange('bio', e.target.value)}
                     rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-500"
                     placeholder="Tell us about yourself and your eco-friendly journey..."
                   />
                 ) : (
