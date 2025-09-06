@@ -4,7 +4,7 @@ import { formatPrice } from '@/lib/currency';
 
 export default function ProductCard({ id, title, price, imageUrl }) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden card-hover transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] animate-fade-in-up">
+    <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md overflow-hidden card-hover transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] animate-fade-in-up">
       <Link href={`/products/${id}`} className="group block">
         <div className="relative h-48 w-full overflow-hidden">
           <Image

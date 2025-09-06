@@ -167,11 +167,11 @@ export default function Dashboard() {
   // Loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-gray-50">
         <Navbar />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
             <div className="text-gray-600">Loading...</div>
           </div>
         </div>
@@ -182,14 +182,14 @@ export default function Dashboard() {
   // Not logged in state - show login prompt
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-gray-50">
         <Navbar />
         <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8 text-center">
             <div>
               <h1 className="text-3xl font-bold text-primary-600 mb-2">EcoFinds</h1>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Your Dashboard</h2>
-              <div className="bg-white rounded-lg shadow-md p-8">
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-8">
                 <div className="mb-6">
                   <svg className="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -255,7 +255,7 @@ export default function Dashboard() {
   const currentProfile = isEditing ? editedProfile : user;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-gray-50">
       <Navbar />
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -302,7 +302,7 @@ export default function Dashboard() {
         </div>
 
         {/* Profile Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Profile Image Section */}
             <div className="lg:col-span-1">
@@ -491,7 +491,7 @@ export default function Dashboard() {
         </div>
 
         {/* My Products Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 mt-6">
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6 mt-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold text-green-700 flex items-center space-x-2 mb-4">
               <span>🛍️</span>
@@ -552,7 +552,7 @@ export default function Dashboard() {
 
         {/* Additional Stats/Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          <div className="card-hover bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
+          <div className="card-hover bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
             <div className="text-3xl font-bold text-green-600 group-hover:scale-110 transition-transform duration-300">{stats.productsOrdered}</div>
             <div className="text-gray-600 font-medium">Products Ordered</div>
             <div className="text-xs text-green-600 mt-1 flex items-center justify-center space-x-1">
@@ -560,7 +560,7 @@ export default function Dashboard() {
               <span>Eco-friendly purchases</span>
             </div>
           </div>
-          <div className="card-hover bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
+          <div className="card-hover bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
             <div className="text-3xl font-bold text-green-600 group-hover:scale-110 transition-transform duration-300">{stats.co2Saved.toFixed(1)}kg</div>
             <div className="text-gray-600 font-medium">CO₂ Saved</div>
             <div className="text-xs text-green-600 mt-1 flex items-center justify-center space-x-1">
@@ -568,7 +568,7 @@ export default function Dashboard() {
               <span>Environmental impact</span>
             </div>
           </div>
-          <div className="card-hover bg-white rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
+          <div className="card-hover bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6 text-center transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-500/10 hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] group">
             <div className="text-3xl font-bold text-green-600 group-hover:scale-110 transition-transform duration-300">{stats.monthsActive}</div>
             <div className="text-gray-600 font-medium">Months Active</div>
             <div className="text-xs text-green-600 mt-1 flex items-center justify-center space-x-1">
