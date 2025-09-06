@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart-context';
+import { useUser } from '@/lib/user-context';
 
 export default function Signup() {
   const router = useRouter();
   const { clearCart } = useCart();
+  const { login, updateUser } = useUser();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -51,11 +53,28 @@ export default function Signup() {
       // Clear cart for new user account
       clearCart();
       
-      setMessage('Account created successfully! Redirecting to login...');
+      // Create new user profile
+      const newUserProfile = {
+        name: formData.name,
+        email: formData.email,
+        phone: '',
+        address: '',
+        city: '',
+        zipCode: '',
+        country: 'United States',
+        bio: '',
+        profileImage: '/placeholder.png'
+      };
+      
+      // Update user profile and log in
+      updateUser(newUserProfile);
+      login(formData.email, formData.password);
+      
+      setMessage('Account created successfully! Redirecting...');
       
       // TODO: Implement actual signup logic here
       setTimeout(() => {
-        router.push('/login'); // Redirect to login page
+        router.push('/products'); // Redirect to products page
       }, 1500); // Give user time to see success message
       
     } catch (error) {

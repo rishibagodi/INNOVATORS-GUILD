@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/lib/cart-context';
+import { useUser } from '@/lib/user-context';
 
 export default function Navbar() {
   const { getTotalItems } = useCart();
+  const { user } = useUser();
   const itemCount = getTotalItems();
 
   return (
@@ -17,7 +20,7 @@ export default function Navbar() {
             </Link>
           </div>
           
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-6">
             <Link 
               href="/products" 
               className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -40,6 +43,21 @@ export default function Navbar() {
               className="bg-primary-600 text-white hover:bg-primary-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
             >
               Add Product
+            </Link>
+            
+            {/* User Dashboard Link with Profile Image */}
+            <Link 
+              href="/dashboard" 
+              className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              <Image
+                src={user?.profileImage || '/placeholder.png'}
+                alt="User Profile"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-full border-2 border-gray-200 hover:border-primary-300 transition-colors object-cover"
+              />
+              <span className="hidden sm:inline">Dashboard</span>
             </Link>
           </div>
         </div>

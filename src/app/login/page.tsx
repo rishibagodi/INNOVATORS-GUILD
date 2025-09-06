@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart-context';
+import { useUser } from '@/lib/user-context';
 
 export default function Login() {
   const router = useRouter();
   const { clearCart } = useCart();
+  const { login } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +29,9 @@ export default function Login() {
       
       // Clear cart for new login session
       clearCart();
+      
+      // Log in user
+      login(email, password);
       
       setMessage('Login successful! Redirecting...');
       
