@@ -138,63 +138,72 @@ export default function Cart() {
             {/* Cart Items */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               {cartItems.map((item) => (
-                <div key={item.id} className="flex items-center p-6 border-b border-gray-200 last:border-b-0">
-                  <div className="relative h-20 w-20 flex-shrink-0">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      fill
-                      className="object-cover rounded-md"
-                    />
-                  </div>
-                  
-                  <div className="ml-4 flex-1">
-                    <h3 className="text-lg font-medium text-gray-900">
-                      {item.title}
-                    </h3>
-                    <p className="text-primary-600 font-semibold">
-                      {formatPrice(item.price)} each
-                    </p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Quantity: {item.quantity} {item.quantity === 1 ? 'item' : 'items'}
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center space-x-2 bg-gray-50 rounded-lg p-2">
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="btn-icon w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-600 font-medium transition-all duration-200 ease-out hover:scale-110 active:scale-95"
-                      >
-                        -
-                      </button>
+                <div key={item.id} className="p-4 sm:p-6 border-b border-gray-200 last:border-b-0">
+                  {/* Mobile Layout - Stack vertically */}
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0">
+                    {/* Product Image and Info */}
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0">
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.title}
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                      </div>
                       
-                      <span className="w-12 text-center font-bold text-lg text-gray-900 bg-white px-2 py-1 rounded border transition-all duration-200 hover:scale-105">
-                        {item.quantity}
-                      </span>
-                      
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="btn-icon w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-600 font-medium transition-all duration-200 ease-out hover:scale-110 active:scale-95"
-                      >
-                        +
-                      </button>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-medium text-gray-900 truncate">
+                          {item.title}
+                        </h3>
+                        <p className="text-green-600 font-semibold text-sm sm:text-base">
+                          {formatPrice(item.price)} each
+                        </p>
+                        <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                          Quantity: {item.quantity} {item.quantity === 1 ? 'item' : 'items'}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="ml-6 text-right">
-                    <p className="text-sm text-gray-500 mb-1">
-                      {item.quantity} × {formatPrice(item.price)}
-                    </p>
-                    <p className="text-lg font-bold text-gray-900 transition-all duration-200 hover:scale-105">
-                      {formatPrice(item.price * item.quantity)}
-                    </p>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-red-600 hover:text-red-800 text-sm font-medium mt-2 hover:underline"
-                    >
-                      Remove
-                    </button>
+                    
+                    {/* Mobile: Controls and Total */}
+                    <div className="flex items-center justify-between sm:justify-end sm:space-x-4">
+                      {/* Quantity Controls */}
+                      <div className="flex items-center space-x-2 bg-gray-50 rounded-lg p-2">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          className="btn-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-600 font-medium transition-all duration-200 ease-out hover:scale-110 active:scale-95"
+                        >
+                          -
+                        </button>
+                        
+                        <span className="w-8 sm:w-12 text-center font-bold text-sm sm:text-lg text-gray-900 bg-white px-1 sm:px-2 py-1 rounded border transition-all duration-200 hover:scale-105">
+                          {item.quantity}
+                        </span>
+                        
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          className="btn-icon w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-600 font-medium transition-all duration-200 ease-out hover:scale-110 active:scale-95"
+                        >
+                          +
+                        </button>
+                      </div>
+                      
+                      {/* Price and Remove */}
+                      <div className="text-right">
+                        <p className="text-xs sm:text-sm text-gray-500 mb-1">
+                          {item.quantity} × {formatPrice(item.price)}
+                        </p>
+                        <p className="text-base sm:text-lg font-bold text-gray-900 transition-all duration-200 hover:scale-105">
+                          {formatPrice(item.price * item.quantity)}
+                        </p>
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          className="text-red-600 hover:text-red-800 text-xs sm:text-sm font-medium mt-1 hover:underline transition-colors duration-200"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}

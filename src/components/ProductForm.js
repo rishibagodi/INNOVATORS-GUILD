@@ -40,7 +40,7 @@ export default function ProductForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
           Product Title
@@ -50,7 +50,7 @@ export default function ProductForm({ onSubmit }) {
           id="title"
           name="title"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
+          className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500 transition-all duration-200 hover:border-gray-400 focus:border-primary-500"
           placeholder="Enter product title"
           value={formData.title}
           onChange={handleChange}
@@ -66,7 +66,7 @@ export default function ProductForm({ onSubmit }) {
           name="description"
           rows={4}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
+          className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500 transition-all duration-200 hover:border-gray-400 focus:border-primary-500 resize-none"
           placeholder="Enter product description"
           value={formData.description}
           onChange={handleChange}
@@ -84,12 +84,12 @@ export default function ProductForm({ onSubmit }) {
           step="1"
           min="0"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500"
+          className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 placeholder-gray-500 transition-all duration-200 hover:border-gray-400 focus:border-primary-500"
           placeholder="Enter price in INR (e.g., 2500)"
           value={formData.price}
           onChange={handleChange}
         />
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-xs sm:text-sm text-gray-500">
           Enter price in Indian Rupees (₹)
         </p>
       </div>
@@ -102,7 +102,7 @@ export default function ProductForm({ onSubmit }) {
           id="category"
           name="category"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900"
+          className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-gray-900 transition-all duration-200 hover:border-gray-400 focus:border-primary-500"
           value={formData.category}
           onChange={handleChange}
         >

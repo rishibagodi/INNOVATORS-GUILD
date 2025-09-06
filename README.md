@@ -699,7 +699,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - Built for the **INNOVATORS GUILD** hackathon
 - Inspired by the global movement toward sustainable living
 - Powered by the amazing Next.js and React communities
-- Special thanks to all contributors and sustainability advocates
 
 ---
 

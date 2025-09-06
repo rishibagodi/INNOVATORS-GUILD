@@ -260,24 +260,24 @@ export default function Dashboard() {
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6 mb-6 animate-fade-in-up">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xl">🌱</span>
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-4 sm:p-6 mb-6 animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl">🌱</span>
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold text-green-600 hover:scale-105 transition-transform duration-300">EcoFinds</h1>
-                  <span className="text-sm text-green-700 font-medium">Sustainable Living Dashboard</span>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-green-600 hover:scale-105 transition-transform duration-300">EcoFinds</h1>
+                  <span className="text-xs sm:text-sm text-green-700 font-medium">Sustainable Living Dashboard</span>
                 </div>
               </div>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
               {!isEditing ? (
                 <button
                   onClick={handleEdit}
-                  className="btn-primary bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  className="btn-primary bg-green-600 text-white px-3 sm:px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm sm:text-base"
                 >
                   ✏️ Edit Profile
                 </button>
@@ -285,13 +285,13 @@ export default function Dashboard() {
                 <>
                   <button
                     onClick={handleCancel}
-                    className="btn-secondary bg-white text-gray-600 border-2 border-gray-300 px-4 py-2 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 ease-out hover:shadow-lg active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    className="btn-secondary bg-white text-gray-600 border-2 border-gray-300 px-3 sm:px-4 py-2 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 ease-out hover:shadow-lg active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm sm:text-base"
                   >
                     ✖️ Cancel
                   </button>
                   <button
                     onClick={handleSave}
-                    className="btn-primary bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                    className="btn-primary bg-green-600 text-white px-3 sm:px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm sm:text-base"
                   >
                     ✅ Save Changes
                   </button>
@@ -302,8 +302,8 @@ export default function Dashboard() {
         </div>
 
         {/* Profile Section */}
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg shadow-md p-4 sm:p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Profile Image Section */}
             <div className="lg:col-span-1">
               <div className="text-center">
@@ -313,15 +313,15 @@ export default function Dashboard() {
                     alt="Profile Picture"
                     width={200}
                     height={200}
-                    className="w-48 h-48 rounded-full object-cover border-4 border-gray-200"
+                    className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full object-cover border-4 border-gray-200"
                   />
                   {isEditing && (
                     <button
                       onClick={triggerFileInput}
-                      className="absolute bottom-2 right-2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition-colors"
+                      className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition-colors"
                       title="Change profile picture"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -335,12 +335,12 @@ export default function Dashboard() {
                   onChange={handleImageUpload}
                   className="hidden"
                 />
-                <h2 className="mt-4 text-2xl font-bold text-gray-900">{currentProfile?.name || 'User'}</h2>
-                <p className="text-gray-600">{currentProfile?.email || 'No email'}</p>
+                <h2 className="mt-3 sm:mt-4 text-xl sm:text-2xl font-bold text-gray-900">{currentProfile?.name || 'User'}</h2>
+                <p className="text-sm sm:text-base text-gray-600">{currentProfile?.email || 'No email'}</p>
                 {isLoggedIn && (
                   <button
                     onClick={handleLogout}
-                    className="mt-2 text-sm text-red-600 hover:text-red-800 transition-all duration-200 hover:scale-105 active:scale-95 font-medium hover:underline"
+                    className="mt-2 text-xs sm:text-sm text-red-600 hover:text-red-800 transition-all duration-200 hover:scale-105 active:scale-95 font-medium hover:underline"
                   >
                     🚪 Logout
                   </button>
@@ -350,12 +350,12 @@ export default function Dashboard() {
 
             {/* Profile Details Section */}
             <div className="lg:col-span-2">
-              <h3 className="text-xl font-semibold text-green-700 mb-6 flex items-center space-x-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-green-700 mb-4 sm:mb-6 flex items-center space-x-2">
                 <span>👤</span>
                 <span>Profile Information</span>
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Name */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
