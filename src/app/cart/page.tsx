@@ -85,14 +85,14 @@ export default function Cart() {
                 <div className="space-y-4">
                   <button
                     onClick={handleLoginRedirect}
-                    className="w-full bg-primary-600 text-white py-3 px-4 rounded-md hover:bg-primary-700 transition-colors font-medium"
+                    className="btn-primary w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition-all duration-300 ease-out font-medium hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                   >
                     Sign In to View Cart
                   </button>
                   
                   <div className="text-sm text-gray-600">
                     Don&apos;t have an account?{' '}
-                    <Link href="/signup" className="text-primary-600 hover:text-primary-700 font-medium">
+                    <Link href="/signup" className="text-green-600 hover:text-green-700 font-medium transition-colors duration-200 hover:underline">
                       Sign up here
                     </Link>
                   </div>
@@ -100,7 +100,7 @@ export default function Cart() {
                   <div className="pt-4 border-t border-gray-200">
                     <Link 
                       href="/products" 
-                      className="text-primary-600 hover:text-primary-700 text-sm font-medium"
+                      className="text-green-600 hover:text-green-700 text-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95 inline-block"
                     >
                       ← Continue browsing products
                     </Link>
@@ -164,18 +164,18 @@ export default function Cart() {
                     <div className="flex items-center space-x-2 bg-gray-50 rounded-lg p-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-600 font-medium"
+                        className="btn-icon w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-600 font-medium transition-all duration-200 ease-out hover:scale-110 active:scale-95"
                       >
                         -
                       </button>
                       
-                      <span className="w-12 text-center font-bold text-lg text-gray-900 bg-white px-2 py-1 rounded border">
+                      <span className="w-12 text-center font-bold text-lg text-gray-900 bg-white px-2 py-1 rounded border transition-all duration-200 hover:scale-105">
                         {item.quantity}
                       </span>
                       
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-600 font-medium"
+                        className="btn-icon w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-600 font-medium transition-all duration-200 ease-out hover:scale-110 active:scale-95"
                       >
                         +
                       </button>
@@ -186,7 +186,7 @@ export default function Cart() {
                     <p className="text-sm text-gray-500 mb-1">
                       {item.quantity} × {formatPrice(item.price)}
                     </p>
-                    <p className="text-lg font-bold text-gray-900">
+                    <p className="text-lg font-bold text-gray-900 transition-all duration-200 hover:scale-105">
                       {formatPrice(item.price * item.quantity)}
                     </p>
                     <button
@@ -230,14 +230,14 @@ export default function Cart() {
               
               <button
                 onClick={handleCheckout}
-                className="w-full mt-6 bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 font-medium text-lg"
+                className="btn-primary w-full mt-6 bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 font-medium text-lg transition-all duration-300 ease-out hover:shadow-lg hover:shadow-green-500/25 active:scale-95 hover:-translate-y-0.5"
               >
                 Proceed to Checkout
               </button>
               
               <Link
                 href="/products"
-                className="block text-center mt-4 text-primary-600 hover:text-primary-500 font-medium"
+                className="block text-center mt-4 text-green-600 hover:text-green-500 font-medium transition-all duration-200 hover:scale-105 active:scale-95"
               >
                 Continue Shopping
               </Link>

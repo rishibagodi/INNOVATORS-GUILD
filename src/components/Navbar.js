@@ -30,24 +30,24 @@ export default function Navbar() {
           <div className="flex items-center space-x-2">
             <Link 
               href="/products" 
-              className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              className="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ease-out hover:scale-105 active:scale-95"
             >
               Products
             </Link>
             <Link 
               href="/cart" 
-              className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors relative"
+              className="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ease-out hover:scale-105 active:scale-95 relative"
             >
               Cart
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse-soft transition-all duration-300 hover:scale-110">
                   {itemCount}
                 </span>
               )}
             </Link>
             <Link 
               href="/products/add" 
-              className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors border border-gray-300 hover:border-primary-600"
+              className="btn-secondary text-gray-700 hover:text-white hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium border border-gray-300 hover:border-green-600 transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95"
             >
               Add Product
             </Link>
@@ -55,14 +55,14 @@ export default function Navbar() {
             {/* User Dashboard Link with Profile Image */}
             <Link 
               href="/dashboard" 
-              className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              className="flex items-center space-x-2 text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ease-out hover:scale-105 active:scale-95"
             >
               <Image
                 src={user?.profileImage || '/placeholder.png'}
                 alt="User Profile"
                 width={32}
                 height={32}
-                className="w-8 h-8 rounded-full border-2 border-gray-200 hover:border-primary-300 transition-colors object-cover"
+                className="w-8 h-8 rounded-full border-2 border-gray-200 hover:border-green-300 transition-all duration-300 object-cover hover:scale-110 hover:shadow-lg"
               />
               <span className="hidden sm:inline">
                 {user ? 'Profile' : 'Sign In'}

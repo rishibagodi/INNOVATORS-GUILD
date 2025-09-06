@@ -25,3 +25,79 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Custom button animations and micro-interactions */
+@layer components {
+  .btn-primary {
+    @apply bg-green-600 text-white px-6 py-2 rounded-lg font-medium;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-green-700 hover:shadow-lg hover:shadow-green-500/25;
+    @apply active:scale-95 active:shadow-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
+    @apply transform hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-green-600 border-2 border-green-600 px-6 py-2 rounded-lg font-medium;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-500/25;
+    @apply active:scale-95 active:shadow-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
+    @apply transform hover:-translate-y-0.5;
+  }
+  
+  .btn-icon {
+    @apply p-2 rounded-full transition-all duration-200 ease-out;
+    @apply hover:bg-gray-100 hover:scale-110;
+    @apply active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-xl hover:shadow-gray-500/10;
+    @apply hover:-translate-y-1 hover:scale-[1.02];
+    @apply active:scale-[0.98];
+  }
+  
+  .nav-link {
+    @apply transition-all duration-200 ease-out;
+    @apply hover:text-green-600 hover:scale-105;
+    @apply active:scale-95;
+  }
+  
+  .input-focus {
+    @apply transition-all duration-200 ease-out;
+    @apply focus:ring-2 focus:ring-green-500 focus:border-green-500;
+    @apply focus:scale-[1.01] focus:shadow-md;
+  }
+}
+
+/* Smooth loading animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
